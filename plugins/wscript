@@ -1,0 +1,12 @@
+# FIXME: .module files are in 'plugins', and .plug are in "drivers"
+def build(bld):
+  print('→ building modules')
+  modules_base=["24Cxx","27xx","93Cxx","mcs48","mcs51","prom"]
+  for mod in modules_base:
+    b=bld(
+      features = 'cc cshlib',
+      source = mod+'.c',
+      target=mod,
+      install_path = "${PREFIX}/lib/geepro/plugins"
+    ).env.shlib_PATTERN       = '%s.module'
+

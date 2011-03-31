@@ -1,0 +1,61 @@
+import os
+import intltool
+import misc
+
+APPNAME='geepro'
+VERSION='0.0.3'
+
+
+srcdir = '.'
+blddir = 'build_directory'
+
+def set_options(opt):
+	# command-line options provided by a waf tool
+	opt.tool_options('compiler_cxx')
+
+
+def configure(conf):
+  print('→ configuring the project')
+  conf.check_tool('gcc g++ intltool')
+  conf.env.CPPFLAGS  = ['-O2','-Wall']
+  conf.env.CXXFLAGS  = ['-O2','-Wall']
+  conf.recurse('gui')
+  conf.env.APPNAME     = APPNAME
+  conf.env.LIB_C       = 'c'
+  conf.env.LIB_Dl      = 'dl'
+  conf.env.LINKFLAGS_DL = ['-rdynamic']
+  conf.check_cfg(package='gtk+-2.0'  , atleast_version='0.0.0')
+  conf.check_cfg(package='cairo'     , atleast_version='0.0.0')
+  conf.check_cfg(package='libxml-2.0', atleast_version='0.0.0')
+  conf.check_cfg(package='gtk+-2.0'  , args='--cflags --libs')
+  conf.check_cfg(package='cairo'     , args='--cflags --libs')
+  conf.check_cfg(package='libxml-2.0', args='--cflags --libs')
+
+  conf.define ('PACKAGE'           , APPNAME)
+  conf.define('PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
+  conf.define('DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
+  conf.define('SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
+
+  conf.write_config_header('config.h')
+
+
+
+def build(bld):
+  print('→ building the project')
+  bld.recurse('doc')
+  bld.recurse('pixmaps')
+  bld.recurse('intl')
+  bld.recurse('drivers')
+  bld.recurse('gui')
+  bld.recurse('plugins')
+  bld.recurse('src')
+  #bld.recurse('po')
+  bld.use_the_magic()
+
+  bld(
+    features     = 'cc cprogram',
+    add_objects  = 'maincode',
+    uselib_local = ['gui'],
+    uselib       = ['GTK+-2.0','CAIRO','LIBXML-2.0','DL'],
+    target       = bld.env.APPNAME,
+  )
