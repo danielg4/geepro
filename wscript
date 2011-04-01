@@ -27,12 +27,12 @@ def configure(conf):
   conf.check_cfg(package='cairo'     , args='--cflags --libs')
   conf.check_cfg(package='libxml-2.0', args='--cflags --libs')
 
-  conf.define ('PACKAGE'           , APPNAME)
-  conf.define('PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
-  conf.define('DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
-  conf.define('SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
+  conf.define('PACKAGE'           , APPNAME)
+  conf.define('DEFAULT_PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
+  conf.define('DEFAULT_DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
+  conf.define('DEFAULT_SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
 
-  conf.write_config_header('config.h')
+  conf.write_config_header('src/config.h')
 
 
 
@@ -49,8 +49,8 @@ def build(bld):
   #bld.use_the_magic()
 
   bld(
-    features     = 'c cprogram',
-    add_objects  = 'maincode',
+    features     = 'cxx cprogram',
+    add_objects  = ['maincode',"main.o"],
     use          = ['gui'],
     uselib       = ['GTK+-2.0','CAIRO','LIBXML-2.0','DL'],
     target       = bld.env.APPNAME,

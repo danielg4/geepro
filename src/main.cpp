@@ -19,6 +19,9 @@
  *
  */
 
+extern "C" {
+#include "config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -34,11 +37,15 @@
 #include "geepro.h"
 #include "storings.h"
 
+
 /* uchwyt api do wybranego sterownika, global na cały program */
 hw_module_type ___hardware_module___ = dummy_hardware_module; 
 
 /*global do zmiennych przechowywanych w pliku */
 store_str store;
+}
+
+//#include <string>
 
 /* globalna zmienna zawierająca uzytkownika */
 int ___uid___= -1;
@@ -71,6 +78,20 @@ char test_hw(void *wg, geepro *gep)
     return 1;
 }
 
+/*
+  conf.define('DEFAULT_PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
+  conf.define('DEFAULT_DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
+  conf.define('DEFAULT_SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
+*/
+/*
+bool find_directory_of_file(string &dir,const string file,const vector<string>lookthere)
+{
+    for (vector<string>::iterator s = codeTable.begin(); s != lookthere.end(); s++) {
+        cout << s <<endl;
+}
+      
+*/
+
 int main(int argc, char **argv)
 {
     geepro geep;
@@ -82,7 +103,11 @@ int main(int argc, char **argv)
     geep.argc = argc;
     geep.argv = argv;
     geep.chp = NULL;
-
+/*
+    // Looking for prefix location of data files
+    char plugin_path[256];
+    find_directory_of_file(plugin_path,"libwillem.so",[DEFAULT_PLUGINS_PATH,"./drivers","/usr/lib/geepro/plugins"],3);
+*/
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
     iface_plugin_allow(geep.ifc, "willem:dummy:jtag");
