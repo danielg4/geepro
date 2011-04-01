@@ -1,0 +1,5 @@
+def build(bld):
+  print('→ building pixmaps')
+  pixmaps=['mcs48.png','mcs51.png','willem_40.png','willem_93Cxx.jpg','willem_pro2.jpg']
+
+  bld.install_files("${PREFIX}/share/geepro/pixmaps",pixmaps)

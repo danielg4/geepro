@@ -4,5 +4,5 @@ def build(bld):
     rule   = 'cp ${SRC} ${TGT}',
     source = 'lang_eng.h',
     target = 'lang.h',
-    before='cc'
+    before='c'
   )

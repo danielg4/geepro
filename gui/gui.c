@@ -768,7 +768,8 @@ void gui_menu_setup(geepro *gep)
     gtk_table_attach(GTK_TABLE(wg3), wg4,  1,2,3,4, GTK_FILL | GTK_EXPAND, 0, 10,0);
     wg4 = gtk_image_new_from_stock("gtk-refresh", GTK_ICON_SIZE_BUTTON);    
     gtk_container_add(GTK_CONTAINER(wg1), wg4);
-    gtk_widget_set_tooltip_text(wg1, "Reload");
+    //gtk_widget_set_tooltip_text(wg1, "Reload");
+    //gtk_tooltips_set_tip (gtk_toolbar_get_tooltips(wg1), wg1, "Reload", NULL);
     gtk_signal_connect(GTK_OBJECT(wg1), "pressed", GTK_SIGNAL_FUNC(gui_refresh_button), gep);
 
     /* opis ukladu */

@@ -4,7 +4,7 @@ def build(bld):
   modules_base=["24Cxx","27xx","93Cxx","mcs48","mcs51","prom"]
   for mod in modules_base:
     b=bld(
-      features = 'cc cshlib',
+      features = 'c cshlib',
       source = mod+'.c',
       target=mod,
       install_path = "${PREFIX}/lib/geepro/plugins"

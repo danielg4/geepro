@@ -1,8 +1,9 @@
+# src
 def build(bld):
   print('→ building src')
   sources=['buffer.c', 'chip.c', 'dummy.c', 'files.c', 'iface.c', 'main.c', 'parport.c', 'timer.c', "storings.c"]
   bld(
-    features     = 'cc', 
+    features     = 'c', 
     source       = sources,
     includes= '# ../intl',
     target = 'maincode'

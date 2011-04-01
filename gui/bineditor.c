@@ -1023,19 +1023,19 @@ static void gui_bineditor_exit_edit(GuiBineditor *be)
 
 static void gui_bineditor_off_edit(GuiBineditor *be)
 {
-    be->clear_sens = gtk_widget_get_sensitive(be->clear);
+    be->clear_sens = GTK_WIDGET_SENSITIVE(be->clear);
     gtk_widget_set_sensitive(be->clear, 0);
-    be->mjmp_sens = gtk_widget_get_sensitive(be->mjmp);
+    be->mjmp_sens = GTK_WIDGET_SENSITIVE(be->mjmp);
     gtk_widget_set_sensitive(be->mjmp, 0);
-    be->rjmp_sens = gtk_widget_get_sensitive(be->rjmp);
+    be->rjmp_sens = GTK_WIDGET_SENSITIVE(be->rjmp);
     gtk_widget_set_sensitive(be->rjmp, 0);
-    be->find_sens = gtk_widget_get_sensitive(be->find);
+    be->find_sens = GTK_WIDGET_SENSITIVE(be->find);
     gtk_widget_set_sensitive(be->find, 0);
 #ifndef NO_PRINTER_SUPPORT
-    be->print_sens = gtk_widget_get_sensitive(be->print);
+    be->print_sens = GTK_WIDGET_SENSITIVE(be->print);
     gtk_widget_set_sensitive(be->print, 0);
 #endif
-    be->chksum_sens = gtk_widget_get_sensitive(be->chksum);
+    be->chksum_sens = GTK_WIDGET_SENSITIVE(be->chksum);
     gtk_widget_set_sensitive(be->chksum, 0);
 }
 

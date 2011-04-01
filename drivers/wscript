@@ -1,3 +1,4 @@
+# drivers
 # FIXME: .module files are in 'plugins', and .plug are in "drivers"
 def build(bld):
   print('→ building drivers')
@@ -5,7 +6,7 @@ def build(bld):
 
   for plug in plugins_base:
     b=bld(
-      features = 'cc cshlib',
+      features = 'c cshlib',
       source = plug+'.c',
       target=plug,
       uselib  = 'C',
@@ -20,5 +21,7 @@ def build(bld):
   obj=bld(
     features = 'subst',
     install_path = "${PREFIX}/share/geepro/drivers",
-    source = 'willem.xml.in')
-  obj.env.table.update({'SHARE_PATH': bld.env.PREFIX+'/share/geepro'})
+    source = 'willem.xml.in',
+    target = 'willem.xml',
+    SHARE_PATH = bld.env.PREFIX+'/share/geepro')
+  #obj.env.table.update({'SHARE_PATH': bld.env.PREFIX+'/share/geepro'})

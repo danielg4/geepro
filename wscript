@@ -1,15 +1,11 @@
-import os
-import intltool
-import misc
-
 APPNAME='geepro'
 VERSION='0.0.3'
 
 
-srcdir = '.'
-blddir = 'build_directory'
+top = '.'
+out = 'build_directory'
 
-def set_options(opt):
+def options(opt):
 	# command-line options provided by a waf tool
 	opt.tool_options('compiler_cxx')
 
@@ -50,12 +46,12 @@ def build(bld):
   bld.recurse('plugins')
   bld.recurse('src')
   #bld.recurse('po')
-  bld.use_the_magic()
+  #bld.use_the_magic()
 
   bld(
-    features     = 'cc cprogram',
+    features     = 'c cprogram',
     add_objects  = 'maincode',
-    uselib_local = ['gui'],
+    use          = ['gui'],
     uselib       = ['GTK+-2.0','CAIRO','LIBXML-2.0','DL'],
     target       = bld.env.APPNAME,
   )
