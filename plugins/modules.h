@@ -142,6 +142,8 @@
 
 #define SET_ERROR	___error___ = -1;	
 
+#define ERROR_VAL	___error___
+
 #define REG_FUNC_END	\
 	___geep___ = ((void*)0);\
 	return ___error___;\
@@ -197,6 +199,12 @@
     REGISTER_FUNCTION_( action##_##registered_name, action##_##exec_name, call_parameters)
 
 #define BYTE_POSITION( value, position )	((value) << ( 8 * (position)))
+
+#define KB_SIZE( x )	(1024 * (x))
+#define MB_SIZE( x ) 	(1024 * KB_SIZE(x))
+#define GB_SIZE( x ) 	(1024 * MB_SIZE(x))
+#define TB_SIZE( x ) 	(1024 * GB_SIZE(x))
+#define PB_SIZE( x ) 	(1024 * TB_SIZE(x))
 
 #endif
 
