@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # drivers
 # FIXME: .module files are in 'plugins', and .plug are in "drivers"
 def build(bld):
@@ -18,10 +19,10 @@ def build(bld):
     ['drivers.dtd','drivers.css'])
 
 
-  obj=bld(
-    features = 'subst',
-    install_path = "${PREFIX}/share/geepro/drivers",
-    source = 'willem.xml.in',
-    target = 'willem.xml',
-    SHARE_PATH = bld.env.PREFIX+'/share/geepro')
+  #obj=bld(
+  #  features = 'subst',
+  #  install_path = "${PREFIX}/share/geepro/drivers",
+  #  source = 'willem.xml.in',
+  #  target = 'willem.xml',
+  #  SHARE_PATH = bld.env.PREFIX+'/share/geepro')
   #obj.env.table.update({'SHARE_PATH': bld.env.PREFIX+'/share/geepro'})
