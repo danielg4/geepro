@@ -19,12 +19,17 @@
  *
  */
 
+#include <iostream>
+#include <string>
+#include <list>
+
 extern "C" {
-#include "config.h"
+#include "src/config.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
 //#include <signal.h>
 
 #include "buffer.h"
@@ -78,19 +83,33 @@ char test_hw(void *wg, geepro *gep)
     return 1;
 }
 
+bool file_exists(const std::string fn)
+{
+    struct stat stfi;
+    int ret;
+    ret=stat(fn.c_str(),&stfi);
+    if (ret == 0) return true; else return false;
+}
 /*
   conf.define('DEFAULT_PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
   conf.define('DEFAULT_DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
   conf.define('DEFAULT_SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
 */
-/*
-bool find_directory_of_file(string &dir,const string file,const vector<string>lookthere)
+
+bool find_directory_of_file(std::string &dir,const std::string file,const char *lookthere[],int nb)
 {
-    for (vector<string>::iterator s = codeTable.begin(); s != lookthere.end(); s++) {
-        cout << s <<endl;
+    static const std::string sep="/";
+    for (int i=0;i<nb;i++) {
+        std::string myfile=lookthere[i]+sep+file;
+        if (file_exists(myfile)) {
+            std::cout << "OK for: "+myfile <<std::endl;
+            dir=lookthere[i];
+            return true;
+        }
+    }
+    return false;
 }
-      
-*/
+
 
 int main(int argc, char **argv)
 {
@@ -103,17 +122,18 @@ int main(int argc, char **argv)
     geep.argc = argc;
     geep.argv = argv;
     geep.chp = NULL;
-/*
+
     // Looking for prefix location of data files
-    char plugin_path[256];
-    find_directory_of_file(plugin_path,"libwillem.so",[DEFAULT_PLUGINS_PATH,"./drivers","/usr/lib/geepro/plugins"],3);
-*/
+    std::string plugin_path;
+    static const char* pathlist[]={"./drivers",DEFAULT_PLUGINS_PATH,"/usr/lib/geepro/plugins"};
+    find_directory_of_file(plugin_path,"libwillem.so",pathlist,3);
+
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
     iface_plugin_allow(geep.ifc, "willem:dummy:jtag");
     iface_module_allow(geep.ifc, "prom:mcs51:mcs48:exampl:93Cxx:27xx:24Cxx:28xx");
     iface_load_config(geep.ifc, NULL);
-    iface_make_plugin_list(geep.ifc, "./drivers", ".plug");
+    iface_make_plugin_list(geep.ifc, plugin_path.c_str(), ".plug");
     gui_menu_setup(&geep);
 /* moduły chipów inicjują menu gui, dlatego gui musi być zainicjowane */
 /* parametry z configa w przyszłości */
