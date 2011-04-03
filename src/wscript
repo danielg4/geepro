@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # src
 def build(bld):
   print('→ building src')

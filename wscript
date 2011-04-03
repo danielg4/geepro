@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 APPNAME='geepro'
 VERSION='0.0.3'
 
