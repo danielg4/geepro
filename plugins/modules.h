@@ -25,6 +25,7 @@
 #include <string.h>
 #include "../drivers/hwplugin.h"
 #include "../src/chip.h"
+#include "../src/protocols.h"
 #include "../gui/gui.h"
 #include "../src/buffer.h"
 #include "../src/geepro.h"
@@ -45,6 +46,10 @@
     
 #define ce(state, delay)	\
     hw_set_ce(state);\
+    hw_delay(delay)
+
+#define we(state, delay)	\
+    hw_set_we(state);\
     hw_delay(delay)
 
 #define pgm(state, delay)	\
