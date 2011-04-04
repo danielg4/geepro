@@ -13,7 +13,7 @@ def build(bld):
       uselib  = 'C',
       includes= '#',
       install_path = "${PREFIX}/lib/geepro/drivers"
-    ).env.shlib_PATTERN       = '%s.plug'
+    ).env.cshlib_PATTERN       = '%s.plug'
 
   bld.install_files("${PREFIX}/share/geepro/drivers",
     ['drivers.dtd','drivers.css'])

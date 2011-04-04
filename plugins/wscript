@@ -7,7 +7,7 @@ def build(bld):
     b=bld(
       features = 'c cshlib',
       source = mod+'.c',
-      target=mod+".module",
+      target=mod,
       install_path = "${PREFIX}/lib/geepro/plugins"
-    )
+    ).env.cshlib_PATTERN       = '%s.module'
 
