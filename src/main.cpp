@@ -90,11 +90,6 @@ bool file_exists(const std::string fn)
     ret=stat(fn.c_str(),&stfi);
     if (ret == 0) return true; else return false;
 }
-/*
-  conf.define('DEFAULT_PLUGINS_PATH'       , conf.env.PREFIX+'/lib/geepro/plugins')
-  conf.define('DEFAULT_DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
-  conf.define('DEFAULT_SHARE_DRIVERS_PATH', conf.env.PREFIX+'/share/geepro/drivers')
-*/
 
 bool find_directory_of_file(std::string &dir,const std::string file,const char *lookthere[],int nb)
 {
@@ -110,7 +105,6 @@ bool find_directory_of_file(std::string &dir,const std::string file,const char *
     return false;
 }
 
-
 int main(int argc, char **argv)
 {
     geepro geep;
@@ -124,20 +118,24 @@ int main(int argc, char **argv)
     geep.chp = NULL;
 
     // Looking for prefix location of data files
-    std::string plugin_path;
-    static const char* pathlist[]={"./drivers",DEFAULT_PLUGINS_PATH,"/usr/lib/geepro/plugins"};
-    find_directory_of_file(plugin_path,"libwillem.so",pathlist,3);
+    std::string drivers_path;
+    static const char* drivers_pathlist[]={"./drivers",DEFAULT_DRIVERS_PATH,"/usr/lib/geepro/drivers"};
+    find_directory_of_file(drivers_path,"willem.plug",drivers_pathlist,3);
+
+    std::string plugins_path;
+    static const char* plugins_pathlist[]={"./plugins",DEFAULT_PLUGINS_PATH,"/usr/lib/geepro/plugins"};
+    find_directory_of_file(plugins_path,"24Cxx.module",plugins_pathlist,3);
 
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
     iface_plugin_allow(geep.ifc, "willem:dummy:jtag");
     iface_module_allow(geep.ifc, "prom:mcs51:mcs48:exampl:93Cxx:27xx:24Cxx:28xx");
     iface_load_config(geep.ifc, NULL);
-    iface_make_plugin_list(geep.ifc, plugin_path.c_str(), ".plug");
+    iface_make_plugin_list(geep.ifc, drivers_path.c_str(), ".plug");
     gui_menu_setup(&geep);
 /* moduły chipów inicjują menu gui, dlatego gui musi być zainicjowane */
 /* parametry z configa w przyszłości */
-    iface_make_modules_list( geep.ifc, "./plugins", ".module"); 
+    iface_make_modules_list( geep.ifc, plugins_path.c_str(), ".module"); 
 
 //    signal(SIGINT, kill_me);
     

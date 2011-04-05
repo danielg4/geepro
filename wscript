@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from waflib.Build import BuildContext
+
 APPNAME='geepro'
 VERSION='0.0.3'
 
@@ -35,6 +37,13 @@ def configure(conf):
 
   conf.write_config_header('src/config.h')
 
+
+def copy_to_build(self, *k, **kw):
+        kw['rule'  ] = 'cp ${SRC} ${TGT}'
+        kw['source']=self.path.make_node(kw['geefile'])
+        kw['target']=self.path.get_bld().make_node(kw['geefile'])
+        return self(*k, **kw)
+BuildContext.copy_to_build = copy_to_build
 
 
 def build(bld):

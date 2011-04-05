@@ -16,8 +16,11 @@ def build(bld):
     ).env.cshlib_PATTERN       = '%s.plug'
 
   bld.install_files("${PREFIX}/share/geepro/drivers",
-    ['drivers.dtd','drivers.css'])
+    ['drivers.dtd','drivers.css','willem.xml'])
 
+  bld.copy_to_build(geefile='willem.xml')
+  bld.copy_to_build(geefile='drivers.dtd')
+  bld.copy_to_build(geefile='drivers.css')
 
   #obj=bld(
   #  features = 'subst',
