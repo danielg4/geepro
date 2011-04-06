@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # drivers
-# FIXME: .module files are in 'plugins', and .plug are in "drivers"
 def build(bld):
   print('→ building drivers')
   drivers_base=["jtag","willem"]
