@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# plugins
 # FIXME: .module files are in 'plugins', and .plug are in "drivers"
 def build(bld):
   print('→ building modules')
