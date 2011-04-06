@@ -24,7 +24,7 @@
 #define __iface_h__
 #include "chip.h"
 
-#define IFACE_PLUGIN_INIT_FUNC_NAME	"plugin_init"
+#define IFACE_PLUGIN_INIT_FUNC_NAME	"driver_init"
 #define IFACE_MODULE_INIT_FUNC_NAME	"init_module"
 
 typedef int (*iface_regf)(void *ifc);

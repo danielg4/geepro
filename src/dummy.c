@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dummy.h"
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 #include "iface.h"
 
 

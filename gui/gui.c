@@ -34,7 +34,7 @@
 #include "../pixmaps/img_idx.h"
 #include "../src/parport.h"
 #include "../pixmaps/xpms.c"
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 #include "../src/iface.h"
 #include "bineditor.h"
 

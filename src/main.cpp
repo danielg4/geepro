@@ -37,7 +37,7 @@ extern "C" {
 #include "main.h"
 #include "chip.h"
 #include "../intl/lang.h"
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 #include "dummy.h"
 #include "geepro.h"
 #include "storings.h"
@@ -120,7 +120,7 @@ int main(int argc, char **argv)
     // Looking for prefix location of data files
     std::string drivers_path;
     static const char* drivers_pathlist[]={"./drivers",DEFAULT_DRIVERS_PATH,"/usr/lib/geepro/drivers"};
-    find_directory_of_file(drivers_path,"willem.plug",drivers_pathlist,3);
+    find_directory_of_file(drivers_path,"willem.driver",drivers_pathlist,3);
 
     std::string plugins_path;
     static const char* plugins_pathlist[]={"./plugins",DEFAULT_PLUGINS_PATH,"/usr/lib/geepro/plugins"};
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
     iface_plugin_allow(geep.ifc, "willem:dummy:jtag");
     iface_module_allow(geep.ifc, "prom:mcs51:mcs48:exampl:93Cxx:27xx:24Cxx:28xx");
     iface_load_config(geep.ifc, NULL);
-    iface_make_plugin_list(geep.ifc, drivers_path.c_str(), ".plug");
+    iface_make_plugin_list(geep.ifc, drivers_path.c_str(), ".driver");
     gui_menu_setup(&geep);
 /* moduły chipów inicjują menu gui, dlatego gui musi być zainicjowane */
 /* parametry z configa w przyszłości */

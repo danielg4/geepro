@@ -19,7 +19,7 @@
  */
 
 #include <stdio.h>
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 
 #define TI 16
 #define TIMEOUT	100

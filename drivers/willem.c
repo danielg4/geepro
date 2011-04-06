@@ -19,7 +19,7 @@
  *
  */
 
-#include "plugins.h"
+#include "drivers.h"
 
 /* tabela poszukiwan identyfikatorow kontrolek */
 static const gui_xml_lt willem_lt[] = 
@@ -613,11 +613,11 @@ int willempro2_hardware_module(int funct, int val, void *ptr)
 /*************************************************************************************************************************/
 /* Rejestracja driverów */
 
-plugin_register_begin
+driver_register_begin
 
     register_api( willem_40_hardware_module );
     register_api( willem4_hardware_module );
     register_api( willempro2_hardware_module );
 
-plugin_register_end
+driver_register_end
 

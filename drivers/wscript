@@ -3,17 +3,17 @@
 # FIXME: .module files are in 'plugins', and .plug are in "drivers"
 def build(bld):
   print('→ building drivers')
-  plugins_base=["jtag","willem"]
+  drivers_base=["jtag","willem"]
 
-  for plug in plugins_base:
+  for driver in drivers_base:
     b=bld(
       features = 'c cshlib',
-      source = plug+'.c',
-      target=plug,
+      source = driver+'.c',
+      target=driver,
       uselib  = 'C',
       includes= '#',
       install_path = "${PREFIX}/lib/geepro/drivers"
-    ).env.cshlib_PATTERN       = '%s.plug'
+    ).env.cshlib_PATTERN       = '%s.driver'
 
   bld.install_files("${PREFIX}/share/geepro/drivers",
     ['drivers.dtd','drivers.css','willem.xml'])

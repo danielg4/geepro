@@ -28,7 +28,7 @@
 #include <errno.h>
 
 #include "iface.h"
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 #include "chip.h"
 
 #include "../intl/lang.h"
