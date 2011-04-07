@@ -123,8 +123,8 @@ int main(int argc, char **argv)
     find_directory_of_file(drivers_path,"willem.driver",drivers_pathlist,3);
 
     std::string chips_path;
-    static const char* plugins_pathlist[]={"./chips",DEFAULT_CHIPS_PATH,"/usr/lib/geepro/chips"};
-    find_directory_of_file(chips_path,"24Cxx.module",plugins_pathlist,3);
+    static const char* chips_pathlist[]={"./chips",DEFAULT_CHIPS_PATH,"/usr/lib/geepro/chips"};
+    find_directory_of_file(chips_path,"24Cxx.chip",chips_pathlist,3);
 
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
