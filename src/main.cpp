@@ -48,6 +48,11 @@ hw_module_type ___hardware_module___ = dummy_hardware_module;
 
 /*global do zmiennych przechowywanych w pliku */
 store_str store;
+
+// Ugly global variable to inform drivers of the location
+// of the xml gui file.
+const char *shared_drivers_xml_file;
+const char *shared_geepro_dir;
 }
 
 //#include <string>
@@ -97,7 +102,7 @@ bool find_directory_of_file(std::string &dir,const std::string file,const char *
     for (int i=0;i<nb;i++) {
         std::string myfile=lookthere[i]+sep+file;
         if (file_exists(myfile)) {
-            std::cout << "OK for: "+myfile <<std::endl;
+            //std::cout << "OK for: "+myfile <<std::endl;
             dir=lookthere[i];
             return true;
         }
@@ -126,6 +131,14 @@ int main(int argc, char **argv)
     static const char* chips_pathlist[]={"./chips",DEFAULT_CHIPS_PATH,"/usr/lib/geepro/chips"};
     find_directory_of_file(chips_path,"24Cxx.chip",chips_pathlist,3);
 
+    std::string share_path;
+    static const char* share_pathlist[]={".",DEFAULT_SHARE_PATH,"/usr/share/geepro"};
+    find_directory_of_file(share_path,"drivers/willem.xml",share_pathlist,3);
+    std::string shared_drivers_xml_file_s="file://"+share_path+"/drivers/willem.xml";
+    shared_drivers_xml_file=shared_drivers_xml_file_s.c_str();
+    std::string shared_geepro_dir_s=share_path+"/";
+    shared_geepro_dir=shared_geepro_dir_s.c_str();
+    
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
     iface_driver_allow(geep.ifc, "willem:dummy:jtag");

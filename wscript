@@ -31,10 +31,10 @@ def configure(conf):
   conf.check_cfg(package='cairo'     , args='--cflags --libs')
   conf.check_cfg(package='libxml-2.0', args='--cflags --libs')
 
-  conf.define('PACKAGE'           , APPNAME)
+  conf.define('PACKAGE'                    , APPNAME)
   conf.define('DEFAULT_CHIPS_PATH'         , conf.env.PREFIX+'/lib/geepro/chips')
   conf.define('DEFAULT_DRIVERS_PATH'       , conf.env.PREFIX+'/lib/geepro/drivers')
-  conf.define('DEFAULT_SHARE_DRIVERS_PATH' , conf.env.PREFIX+'/share/geepro/drivers')
+  conf.define('DEFAULT_SHARE_PATH'         , conf.env.PREFIX+'/share/geepro')
 
   conf.write_config_header('src/config.h')
 
