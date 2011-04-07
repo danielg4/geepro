@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-# plugins
-# FIXME: .module files are in 'plugins', and .plug are in "drivers"
+# chips
 def build(bld):
-  print('→ building modules')
+  print('→ building chips')
   modules_base=["24Cxx","27xx","28xx","93Cxx","mcs48","mcs51","prom"]
   for mod in modules_base:
     b=bld(
       features = 'c cshlib',
       source = mod+'.c',
       target=mod,
-      install_path = "${PREFIX}/lib/geepro/plugins"
-    ).env.cshlib_PATTERN       = '%s.module'
+      install_path = "${PREFIX}/lib/geepro/chips"
+    ).env.cshlib_PATTERN       = '%s.chip'
 

@@ -122,9 +122,9 @@ int main(int argc, char **argv)
     static const char* drivers_pathlist[]={"./drivers",DEFAULT_DRIVERS_PATH,"/usr/lib/geepro/drivers"};
     find_directory_of_file(drivers_path,"willem.driver",drivers_pathlist,3);
 
-    std::string plugins_path;
-    static const char* plugins_pathlist[]={"./plugins",DEFAULT_PLUGINS_PATH,"/usr/lib/geepro/plugins"};
-    find_directory_of_file(plugins_path,"24Cxx.module",plugins_pathlist,3);
+    std::string chips_path;
+    static const char* plugins_pathlist[]={"./chips",DEFAULT_CHIPS_PATH,"/usr/lib/geepro/chips"};
+    find_directory_of_file(chips_path,"24Cxx.module",plugins_pathlist,3);
 
     store_constr(&store, "~/.geepro","geepro.st");
 // do poprawki jak będzie config - te wszystkie stałe mają być pobierane z pliku configuracyjnego 
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
     gui_menu_setup(&geep);
 /* moduły chipów inicjują menu gui, dlatego gui musi być zainicjowane */
 /* parametry z configa w przyszłości */
-    iface_make_modules_list( geep.ifc, plugins_path.c_str(), ".module"); 
+    iface_make_modules_list( geep.ifc, chips_path.c_str(), ".chip"); 
 
 //    signal(SIGINT, kill_me);
     
