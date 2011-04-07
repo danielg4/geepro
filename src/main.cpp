@@ -33,7 +33,7 @@ extern "C" {
 //#include <signal.h>
 
 #include "buffer.h"
-#include "../gui/gui.h"
+#include "../gui-gtk/gui.h"
 #include "main.h"
 #include "chip.h"
 #include "../intl/lang.h"

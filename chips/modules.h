@@ -26,7 +26,7 @@
 #include "../drivers/hwdriver.h"
 #include "../src/chip.h"
 #include "../src/protocols.h"
-#include "../gui/gui.h"
+#include "../gui-gtk/gui.h"
 #include "../src/buffer.h"
 #include "../src/geepro.h"
 

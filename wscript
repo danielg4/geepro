@@ -19,7 +19,7 @@ def configure(conf):
   conf.check_tool('gcc g++ intltool')
   conf.env.CPPFLAGS  = ['-O2','-Wall']
   conf.env.CXXFLAGS  = ['-O2','-Wall']
-  conf.recurse('gui')
+  conf.recurse('gui-gtk')
   conf.env.APPNAME     = APPNAME
   conf.env.LIB_C       = 'c'
   conf.env.LIB_Dl      = 'dl'
@@ -53,7 +53,7 @@ def build(bld):
   bld.recurse('pixmaps')
   bld.recurse('intl')
   bld.recurse('drivers')
-  bld.recurse('gui')
+  bld.recurse('gui-gtk')
   bld.recurse('chips')
   bld.recurse('src')
   #bld.recurse('po')
@@ -62,7 +62,7 @@ def build(bld):
   bld(
     features     = 'cxx cprogram',
     add_objects  = ['maincode',"main.o"],
-    use          = ['gui'],
+    use          = ['gui-gtk'],
     uselib       = ['GTK+-2.0','CAIRO','LIBXML-2.0','DL'],
     target       = bld.env.APPNAME,
   )

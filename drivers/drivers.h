@@ -32,7 +32,7 @@
 
 #include "../src/geepro.h"
 
-#include "../gui/gui_xml.h"
+#include "../gui-gtk/gui_xml.h"
 
 #define DRIVER_NAME(ptr)	(*(char **)ptr)
 

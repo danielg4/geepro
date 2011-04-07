@@ -10,6 +10,6 @@ def build(bld):
   bld(
   features = 'c cstlib',
   source  = ["bineditor.c","checksum.c","gui.c","gui_xml.c"],
-  target  = 'gui',
+  target  = 'gui-gtk',
   uselib  = ['GTK+-2.0','CAIRO','LIBXML-2.0'],
   includes= '../intl')
