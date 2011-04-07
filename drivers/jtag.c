@@ -21,7 +21,7 @@
  *
  */
 
-#include "plugins.h"
+#include "drivers.h"
 
 int jtag_byteblaster_api(int func, int val, void *ptr)
 {
@@ -37,9 +37,9 @@ int jtag_byteblaster_api(int func, int val, void *ptr)
 
 
 /******************************************************************************************************************/
-plugin_register_begin
+driver_register_begin
 
     register_api( jtag_byteblaster_api );
 
-plugin_register_end
+driver_register_end
 

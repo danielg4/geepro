@@ -1,5 +1,5 @@
-#ifndef __PLUGINS_H__
-#define __PLUGINS_H__
+#ifndef __DRIVERS_H__
+#define __DRIVERS_H__
 /* $Revision: 1.4 $ */
 /* geepro - Willem eprom programmer for linux
  * Copyright (C) 2006 Krzysztof Komarnicki
@@ -27,17 +27,17 @@
 #include "../src/parport.h"
 #include "willem.h"
 #include "../src/timer.h"
-#include "hwplugin.h"
+#include "hwdriver.h"
 #include "../src/iface.h"
 
 #include "../src/geepro.h"
 
-#include "../gui/gui_xml.h"
+#include "../gui-gtk/gui_xml.h"
 
 #define DRIVER_NAME(ptr)	(*(char **)ptr)
 
-#define plugin_register_begin 	int plugin_init(void *___ptr___){
-#define plugin_register_end 	return 0; }
+#define driver_register_begin 	int driver_init(void *___ptr___){
+#define driver_register_end 	return 0; }
 #define register_api(api)	iface_prg_add(___ptr___, api, 1)
 
 

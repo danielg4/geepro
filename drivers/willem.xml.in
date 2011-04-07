@@ -10,10 +10,10 @@
 	    <if chip="none">
 		<description>Simple popular programmer.</description>
 		<if programmer="willem_40,willem_pcb3">
-		    <image src="pixmaps/willem_40.png"/>
+		    <image src="@SHARE_PATH@/pixmaps/willem_40.png"/>
 		</if>
 		<if programmer="willem_pro2">
-		    <image src="pixmaps/willem_pro2.jpg"/>
+		    <image src="@SHARE_PATH@/pixmaps/willem_pro2.jpg"/>
 		</if>
 		<vbox>
 		    <hbox border="0">
@@ -24,7 +24,7 @@
 	    </if>
 	    <if family="93Cxx">
 		<description>SERIAL MICROWIRE EEPROM.</description>
-		<image src="pixmaps/willem_93Cxx.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_93Cxx.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -34,7 +34,7 @@
 	    </if>
 	    <if family="24Cxx">
 		<description>I2C EEPROM.</description>
-		<image src="pixmaps/willem_24Cxx.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_24Cxx.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -44,7 +44,7 @@
 	    </if>
 	    <if family="27C0xx">
 		<description>EEPROM.</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -55,7 +55,7 @@
 
 	    <if family="2716">
 		<description>EPROM constant prog pulse 50ms, 2kB</description>
-		<image src="pixmaps/willem_2716.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_2716.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -65,7 +65,7 @@
 	    </if>
 	    <if family="2732">
 		<description>EPROM 4kB </description>
-		<image src="pixmaps/willem_2732.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_2732.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -75,7 +75,7 @@
 	    </if>
 	    <if family="2764_128">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_28pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -85,7 +85,7 @@
 	    </if>
 	    <if family="27256">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_28pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -95,7 +95,7 @@
 	    </if>
 	    <if family="27512">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_28pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -105,7 +105,7 @@
 	    </if>
 	    <if family="27C010">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -115,7 +115,7 @@
 	    </if>
 	    <if family="27C040">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -125,7 +125,7 @@
 	    </if>
 	    <if family="27C080">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -133,29 +133,10 @@
 		    </hbox>
 		</vbox>
 	    </if>
-	    <if family="27C1024">
-		<description>EPROM</description>
-		<image src="pixmaps/willem_40pin_eprom.png"/>
-		<vbox>
-		    <hbox border="0">
-			<jumper name_up="29x" set="0"/>
-			<dipswitch name="Dip switch" len="12" value="0x636"/>
-		    </hbox>
-		</vbox>
-	    </if>
-	    <if family="27C4096">
-		<description>EPROM</description>
-		<image src="pixmaps/willem_40pin_eprom.png"/>
-		<vbox>
-		    <hbox border="0">
-			<jumper name_up="29x" set="0"/>
-			<dipswitch name="Dip switch" len="12" value="0xab4"/>
-		    </hbox>
-		</vbox>
-	    </if>
+
 	    <if family="27C400">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_42pin_eprom.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_42pin_eprom.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -165,7 +146,7 @@
 	    </if>
 	    <if family="27C322">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_42pin_eprom.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_42pin_eprom.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -174,9 +155,11 @@
 		</vbox>
 	    </if>
 
+
+
 	    <if family="2864_128">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_28pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -186,7 +169,7 @@
 	    </if>
 	    <if family="28256">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_28pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -196,17 +179,17 @@
 	    </if>
 	    <if family="28512">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_28pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
-			<dipswitch name="Dip switch" len="12" value="0x634"/>
+			<dipswitch name="Dip switch" len="12" value="0x1d4"/>
 		    </hbox>
 		</vbox>
 	    </if>
 	    <if family="28F010">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -216,7 +199,7 @@
 	    </if>
 	    <if family="28F040">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -226,7 +209,7 @@
 	    </if>
 	    <if family="28F080">
 		<description>EPROM</description>
-		<image src="pixmaps/willem_32pin.png"/>
+		<image src="@SHARE_PATH@/pixmaps/willem_32pin.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -242,7 +225,7 @@
 
 	    <if family="AT89Cxx51">
 		<description>Jakis opis do poprawy.</description>
-		<image src="pixmaps/mcs51.png"/>
+		<image src="@SHARE_PATH@/pixmaps/mcs51.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -252,7 +235,7 @@
 	    </if>
 	    <if family="AT89C5x">
 		<description>Jakis opis do poprawy.</description>
-		<image src="pixmaps/mcs51.png"/>
+		<image src="@SHARE_PATH@/pixmaps/mcs51.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -262,7 +245,7 @@
 	    </if>
 	    <if family="i875x">
 		<description>Jakis opis do poprawy.</description>
-		<image src="pixmaps/mcs51.png"/>
+		<image src="@SHARE_PATH@/pixmaps/mcs51.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -272,7 +255,7 @@
 	    </if>
 	    <if family="AT90S20pin">
 		<description>Jakis opis do poprawy.</description>
-		<image src="pixmaps/mcs51.png"/>
+		<image src="@SHARE_PATH@/pixmaps/mcs51.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>
@@ -282,7 +265,7 @@
 	    </if>
 	    <if family="MCS-48">
 		<description>Jakis opis do poprawy.</description>
-		<image src="pixmaps/mcs48.png"/>
+		<image src="@SHARE_PATH@/pixmaps/mcs48.png"/>
 		<vbox>
 		    <hbox border="0">
 			<jumper name_up="29x" set="0"/>

@@ -28,7 +28,7 @@
 #include <errno.h>
 
 #include "iface.h"
-#include "../drivers/hwplugin.h"
+#include "../drivers/hwdriver.h"
 #include "chip.h"
 
 #include "../intl/lang.h"
@@ -198,14 +198,14 @@ iface_prg_api iface_get_func(iface *ifc, char *name)
 
 /*****************************************************************************************/
 
-int iface_add_plugin(iface *ifc, void *phandler, iface_regf fc)
+int iface_add_driver(iface *ifc, void *phandler, iface_regf fc)
 {
-    iface_plugin *new_tie, *tmp;
+    iface_driver *new_tie, *tmp;
 
     if(!(phandler && fc)) return -1;
 
-    if(!(new_tie = (iface_plugin*) malloc(sizeof(iface_plugin)))){
-	printf("{iface.h} iface_add_plugin() -> memory allocation error (1) \n");
+    if(!(new_tie = (iface_driver*) malloc(sizeof(iface_driver)))){
+	printf("{iface.h} iface_add_driver() -> memory allocation error (1) \n");
 	return -1;
     }
 
@@ -224,9 +224,9 @@ int iface_add_plugin(iface *ifc, void *phandler, iface_regf fc)
     return 0;
 }
 
-void iface_rmv_plugin(iface *ifc)
+void iface_rmv_driver(iface *ifc)
 {
-    iface_plugin *tmp;
+    iface_driver *tmp;
 
     while(ifc->plg){
 	tmp = ifc->plg->next;
@@ -318,7 +318,7 @@ static int iface_add_plug_file(iface *ifc, const char *pth, const char *name, co
     if(z < 0) z = 0;
     if( *(tmp + z ) != '/') strcat(tmp, "/");
     strcat(tmp, name);
-    printf("Adding plugin file %s ... ", tmp);
+    printf("Adding driver file %s ... ", tmp);
 
     /* czy ścieżka absoltna, jeśli nie to dodaj cwd */
     if(n) free(path);
@@ -332,7 +332,7 @@ static int iface_add_plug_file(iface *ifc, const char *pth, const char *name, co
     }
     if(len) free(tmp); /* ściezka do pliku jest już niepotrzebna */
 
-    if(!(init = (iface_regf)dlsym(pf, IFACE_PLUGIN_INIT_FUNC_NAME))){
+    if(!(init = (iface_regf)dlsym(pf, IFACE_DRIVER_INIT_FUNC_NAME))){
 	printf("Error: dlsym() --> %s\n", dlerror());
 	dlclose(pf);
 	return -2;
@@ -341,14 +341,14 @@ static int iface_add_plug_file(iface *ifc, const char *pth, const char *name, co
 
     /* wywołanie funkcji rejestrującej plugin */
     if(init(ifc)){
-	printf("Error: " IFACE_PLUGIN_INIT_FUNC_NAME "()\n");
+	printf("Error: " IFACE_DRIVER_INIT_FUNC_NAME "()\n");
 	dlclose(pf);
 	return -2;
     }
 
     /* dodanie pluginu do kolejki */
-    if(iface_add_plugin(ifc, pf, init)){
-	printf("Error: " IFACE_PLUGIN_INIT_FUNC_NAME "()\n");
+    if(iface_add_driver(ifc, pf, init)){
+	printf("Error: " IFACE_DRIVER_INIT_FUNC_NAME "()\n");
 	dlclose(pf);
 	return -2;
     };
@@ -357,7 +357,7 @@ static int iface_add_plug_file(iface *ifc, const char *pth, const char *name, co
     return 0;
 }
 
-int iface_make_plugin_list(iface *ifc, const char *path, const char *ext)
+int iface_make_driver_list(iface *ifc, const char *path, const char *ext)
 {
     return iface_dir_fltr(ifc, ifc->plg_list, path, ext, iface_add_plug_file);
 }
@@ -380,14 +380,14 @@ void iface_destroy(iface *ifc)
     hw_close();
     iface_rmv_ifc(ifc);
     iface_rmv_prg(ifc);
-    iface_rmv_plugin(ifc);
+    iface_rmv_driver(ifc);
     chip_rmv_qe(ifc->plugins);
     if(ifc->plugins->mdl) iface_rmv_modules(ifc);
     if(ifc->plugins) free(ifc->plugins);
     free(ifc);
 }
 
-void iface_plugin_allow(iface *ifc, const char *list)
+void iface_driver_allow(iface *ifc, const char *list)
 {
     ifc->plg_list = (char*)list;
 }

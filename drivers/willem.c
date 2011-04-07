@@ -19,7 +19,7 @@
  *
  */
 
-#include "plugins.h"
+#include "drivers.h"
 
 /* tabela poszukiwan identyfikatorow kontrolek */
 static const gui_xml_lt willem_lt[] = 
@@ -82,6 +82,7 @@ static unsigned int _addr=0;
 static int programmer_mode = 0;
 
 extern int ___uid___;
+extern const char *shared_drivers_xml_file;
 
 /**************************************************************************************************************************/
 /* sterownik */
@@ -430,11 +431,10 @@ static gui_xml_ifattr willem_if_attr[4] = {{"chip","none"},{"programmer","willem
 
 static void willem_set_gui_main(geepro *gep, const char *chip_name, const char *family, const char *programmer)
 {
-
     willem_if_attr[0].val = chip_name;
     willem_if_attr[1].val = programmer;
     willem_if_attr[2].val = family;
-    gui_xml_build(GUI_XML(GUI(gep->gui)->xml), "file://./drivers/willem.xml", "info,notebook", willem_if_attr);
+    gui_xml_build(GUI_XML(GUI(gep->gui)->xml), shared_drivers_xml_file, "info,notebook", willem_if_attr);
     gui_xml_register_event_func(GUI(gep->gui)->xml, willem_event);
 }
 
@@ -613,11 +613,11 @@ int willempro2_hardware_module(int funct, int val, void *ptr)
 /*************************************************************************************************************************/
 /* Rejestracja driverów */
 
-plugin_register_begin
+driver_register_begin
 
     register_api( willem_40_hardware_module );
     register_api( willem4_hardware_module );
     register_api( willempro2_hardware_module );
 
-plugin_register_end
+driver_register_end
 

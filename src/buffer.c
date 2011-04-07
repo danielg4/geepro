@@ -25,7 +25,7 @@
 #include "buffer.h"
 #include "../intl/lang.h"
 #include "main.h"
-#include "../gui/gui.h"
+#include "../gui-gtk/gui.h"
 
 int buffer_alloc(chip_desc *chip)
 {	

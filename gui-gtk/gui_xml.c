@@ -28,6 +28,8 @@
 //#define DEBUG(fmt, p...)	printf("|-- DEBUG --> " fmt "\n", ## p)
 #define DEBUG(fmt, p...)
 
+extern const char *shared_geepro_dir;
+
 static void gui_xml_parse_element(gui_xml *g, GtkWidget *wg, xmlDocPtr doc, xmlNode *cur, gui_xml_ifattr *parm);
 
 static void gui_xml_event_default(gui_xml_ev *ev, int val, const char *sval)
@@ -436,7 +438,11 @@ static GtkWidget *gui_xml_entry(gui_xml *g, xmlNode *cur)
 
 static GtkWidget *gui_xml_image(gui_xml *g, xmlNode *cur)
 {
-    return gtk_image_new_from_file((char *)xmlGetProp(cur, (unsigned char *)"src"));
+    char imagefile[256]="";
+    strncat(imagefile,shared_geepro_dir,256);
+    strncat(imagefile,(char *)xmlGetProp(cur, (unsigned char *)"src"),256-strlen(imagefile));
+    
+    return gtk_image_new_from_file(imagefile);
 }
 
 static GtkWidget *gui_xml_label(gui_xml *g, xmlNode *cur)

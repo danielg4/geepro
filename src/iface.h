@@ -24,7 +24,7 @@
 #define __iface_h__
 #include "chip.h"
 
-#define IFACE_PLUGIN_INIT_FUNC_NAME	"plugin_init"
+#define IFACE_DRIVER_INIT_FUNC_NAME	"driver_init"
 #define IFACE_MODULE_INIT_FUNC_NAME	"init_module"
 
 typedef int (*iface_regf)(void *ifc);
@@ -43,7 +43,7 @@ enum{
 typedef int  (*iface_prg_api)(int func, int arg, void *ptr);
 typedef struct iface_qe iface_qe;
 typedef struct iface_prg iface_prg;
-typedef struct iface_plugin iface_plugin;
+typedef struct iface_driver iface_driver;
 
 struct iface_qe
 {
@@ -61,11 +61,11 @@ struct iface_prg
     iface_prg *next;    
 };
 
-struct iface_plugin
+struct iface_driver
 {
     void *phandler;	/* uchwyt pluginu */    
     iface_regf fc;      /* funkcja rejestrująca */
-    iface_plugin *next;
+    iface_driver *next;
 };
 
 typedef struct
@@ -75,7 +75,7 @@ typedef struct
     chip_plugins *plugins;
     iface_qe *qe;	/* kolejka interfejsów */
     iface_prg *prg;     /* lista driverów */
-    iface_plugin *plg;  /* lista plików pluginów do obsługi programatora */
+    iface_driver *plg;  /* lista plików pluginów do obsługi programatora */
 /* wybrany programator: */
     int ifc_sel;
     int prog_sel;
@@ -107,14 +107,14 @@ extern iface_prg_api iface_get_func(iface *ifc, char *name);
 extern void iface_rmv_prg(iface *ifc); /* usuwa wszystkie sterowniki z kolejki */
 
 /* lista pluginów */
-extern int  iface_make_plugin_list(iface *ifc, const char *path, const char *ext); /* tworzy listę pluginów z danej lokalizacji */
-extern int  iface_add_plugin(iface *ifc, void *phandler, iface_regf); /* dodaje plugin */
-extern void iface_rmv_plugin(iface *ifc); /* usuwa wszystkie pluginy z kolejki */
+extern int  iface_make_driver_list(iface *ifc, const char *path, const char *ext); /* tworzy listę pluginów z danej lokalizacji */
+extern int  iface_add_driver(iface *ifc, void *phandler, iface_regf); /* dodaje plugin */
+extern void iface_rmv_driver(iface *ifc); /* usuwa wszystkie pluginy z kolejki */
 extern int  iface_dir_fltr(iface *ifc, const char *lst, const char *path, const char *ext, iface_cb_fltr);
-extern void iface_plugin_allow(iface *ifc, const char *lst); /* lst jest postaci: "plugin1:plugin2:plugin3 .... "*/
+extern void iface_driver_allow(iface *ifc, const char *lst); /* lst jest postaci: "plugin1:plugin2:plugin3 .... "*/
 
 /* lista modułów */
-extern void iface_load_plugins(iface *ifc);
+extern void iface_load_drivers(iface *ifc);
 extern void iface_make_modules_list( iface *ifc, const char *path, const char *ext);
 extern void iface_module_allow(iface *ifc, const char *lst); /* lst jest postaci: "plugin1:plugin2:plugin3 .... "*/
 extern void iface_rmv_modules(iface *);

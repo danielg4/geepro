@@ -19,8 +19,8 @@
  *
  */
 
-#ifndef __hwplugin_h__
-#define __hwplugin_h__
+#ifndef __hwdriver_h__
+#define __hwdriver_h__
 
 /********************************************************************/
 /* funkcje v. 0.0.1 */
